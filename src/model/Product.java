@@ -5,7 +5,7 @@ public class Product {
 	private String titleProduct;
 	private double priceProduct;
 	private int Quantite;
-	
+	byte[] image;
 	
 	public Product() {
 		super();
@@ -13,20 +13,26 @@ public class Product {
 	}
 
 
-	public Product(int idProduct, String titleProduct, double priceProduct, int quantite) {
+	public Product(int idProduct, String titleProduct, double priceProduct, int quantite, byte[] image) {
 		super();
 		this.idProduct = idProduct;
 		this.titleProduct = titleProduct;
 		this.priceProduct = priceProduct;
 		this.Quantite = quantite;
+		this.image = image;
+
+		
+
 	}
 
 	
-	public Product(String titleProduct, double priceProduct, int quantite) {
+	public Product(String titleProduct, double priceProduct, int quantite, byte[] image) {
 		super();
 		this.titleProduct = titleProduct;
 		this.priceProduct = priceProduct;
 		this.Quantite = quantite;
+		this.image = image;
+
 	}
 
 	public int getIdProduct() {
@@ -66,6 +72,16 @@ public class Product {
 
 	public void setQuantite(int quantite) {
 		this.Quantite = quantite;
+	}
+
+
+	public byte[] getImage() {
+		return image;
+	}
+
+
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
 	

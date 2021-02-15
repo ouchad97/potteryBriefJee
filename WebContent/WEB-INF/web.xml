@@ -30,6 +30,6 @@
         <servlet-class>Controller.AddProductServlet</servlet-class>
     </servlet>
     
-    
+   
 </web-app>
 
