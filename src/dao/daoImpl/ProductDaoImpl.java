@@ -51,7 +51,8 @@ public class ProductDaoImpl implements ProductDao {
 		statement.setString(1, titleProduct);
 		statement.setDouble(2, priceProduct);
 		statement.setInt(3, Quantite);
-		
+		statement.executeUpdate();
+
 		product = new Product(titleProduct, priceProduct, Quantite); 
 		
 		return product;

@@ -32,28 +32,26 @@ public class AddProductServlet extends HttpServlet {
 	public AddProductServlet() {
 		super();
 	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-        request.getRequestDispatcher("Ajout.jsp").forward(request, response);
+		request.getRequestDispatcher("Ajout.jsp").forward(request, response);
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException { 
+			throws ServletException, IOException {
+
 		String titleProduct = request.getParameter("titleProduct");
 		double priceProduct = Double.parseDouble(request.getParameter("priceProduct"));
 		int Quantite = Integer.parseInt(request.getParameter("Quantite"));
-		
 		try {
 			product.AddProduct(titleProduct, priceProduct, Quantite);
-		} catch (ClassNotFoundException | SQLException e) { 
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		//test
-		response.sendRedirect("vote");		
-		
+		// test
+		response.sendRedirect("vote");
+
 	}
-
-
-
 
 }
