@@ -1,7 +1,7 @@
 
 
 
- <nav class="navbar navbar-expand-md  fixed-top menu">
+ <nav class="navbar navbar-expand-md bg-lights fixed-top menu">
      
 	<img class="mb-4 logo"  alt="logo" width="44" height="44" style="margin-left:4%" src="images/lgoSBahia.png" >
   	  

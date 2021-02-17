@@ -2,45 +2,54 @@
 <!DOCTYPE html>
 <html lang="en">
 
-	<%@include file="/include/head.jsp"%>
-	<body>
-	<%@include file="/include/menu.jsp"%> 
+<%@include file="/include/head.jsp"%>
+<body>
+	<%@include file="/include/menu.jsp"%>
 
-	<div class="row">
-	
+
+
+	<div class="row"
+		style="position: absolute; margin-top: -33%; margin-left: 71%">
 		<div class="container">
-			<h3 class="text-center">List Product</h3>
-			<hr>
 			<div class="container text-left">
-					<a href="<%=request.getContextPath()%>/Ajout" class="btn btn-success">Ajouter nouveau Article</a>
+				<a href="<%=request.getContextPath()%>/Ajout"
+					class="btn btn-success">Ajouter nouveau produit</a>
 			</div>
-			<br>
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Title</th>
-						<th>Prix</th>
-						<th>Quantité</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="product" items="${listProduct}">
-						<tr>
-							<td><c:out value="${product.idProduct}" /></td>
-							<td><c:out value="${product.titleProduct}" /></td>
-							<td><c:out value="${product.priceProduct}"/> </td>
-							<td><c:out value="${product.quantite}" /></td>
-							<td>
-								<a href="edit?idProduct=<c:out value='${product.idProduct}' />">Modifier</a>
-							 	<a href="delete?idProduct=<c:out value='${product.idProduct}' />">Supprimer</a>
-							</td> 
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
 		</div>
 	</div>
-	</body>
+	<br>
+	<div class="container d-flex justify-content-center mt-100 imagesVote">
+
+		<div class="row ">
+
+
+			<c:forEach var="product" items="${listProduct}" varStatus="status">
+
+
+				<div class="col-md-3">
+					<div class="product-wrapper mb-45 text-center">
+						<div class="product-img">
+							<a> <img
+								src="data:image/jpeg;base64,${ images[status.index] }" alt=""
+								width="100%" height="410">
+							</a> <span><i class="fa fa-rupee"></i>55</span>
+							<div class="product-action">
+								<div class="product-action-style">
+								
+									<a href="#"> <i><img alt="" src="images/edit.png"></i></a>
+									<a href="#"> <i><img alt="" src="images/delete.png"></i></a>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+
+
+		</div>
+	</div>
+
+
+</body>
 </html>

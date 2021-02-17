@@ -30,6 +30,9 @@
         <servlet-class>Controller.AddProductServlet</servlet-class>
     </servlet>
     
-   
+     <servlet>
+        <servlet-name>Gestion</servlet-name>
+        <servlet-class>Controller.gestionServlet</servlet-class>
+    </servlet>
 </web-app>
 
