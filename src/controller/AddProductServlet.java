@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.apache.commons.io.IOUtils;
 
@@ -48,24 +49,29 @@ public class AddProductServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String titleProduct = request.getParameter("titleProduct");
-		double priceProduct = Double.parseDouble(request.getParameter("priceProduct"));
-		int Quantite = Integer.parseInt(request.getParameter("Quantite"));
-		InputStream inputStream = null;
-		Part filePart = request.getPart("image");
-		if (filePart != null) {
-			inputStream = filePart.getInputStream();
-		}
+		HttpSession session = request.getSession();
 
-		byte[] image = IOUtils.toByteArray(inputStream);
-		try {
-			product.AddProduct(titleProduct, priceProduct, Quantite, image);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
-		// test
-		response.sendRedirect("vote");
+		if (session.getAttribute("Administrateur") != null) {
+			String titleProduct = request.getParameter("titleProduct");
+			double priceProduct = Double.parseDouble(request.getParameter("priceProduct"));
+			int Quantite = Integer.parseInt(request.getParameter("Quantite"));
+			InputStream inputStream = null;
+			Part filePart = request.getPart("image");
+			if (filePart != null) {
+				inputStream = filePart.getInputStream();
+			}
 
+			byte[] image = IOUtils.toByteArray(inputStream);
+			try {
+				product.AddProduct(titleProduct, priceProduct, Quantite, image);
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+			// test
+			response.sendRedirect("Gestion");
+		} else {
+			response.sendRedirect(request.getContextPath() + "/login");
+		}
 	}
 
 }

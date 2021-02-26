@@ -1,4 +1,5 @@
 <%@include file="/include/taglibs.jsp"%>
+<%@ page import="model.User" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,36 +16,53 @@
 <body>
 
 	<%@include file="/include/menu.jsp"%>
+	<%
+		//In case, if Editor session is not set, redirect to Login page
+	if ((request.getSession(false).getAttribute("Client") == null)) {
+	%>
+	<jsp:forward page="login"></jsp:forward>
+	<%
+		}
+	%>
 
+		
 	<div class="container d-flex justify-content-center mt-100 imagesVote">
 
 		<div class="row ">
 
+			<c:forEach var="product" items="${listProduct}" varStatus="display">
 
-			<c:forEach var="product" items="${listProduct}" varStatus="status">
 
-
-				<div class="col-md-3">
-					<div class="product-wrapper mb-45 text-center">
-						<div class="product-img">
-							<a> <img src="data:image/jpeg;base64,${ images[status.index] }" alt="" width="100%" height="410">
-							</a> <span><i class="fa fa-rupee"></i>55</span>
-							<div class="product-action">
-								<div class="product-action-style">
-									<!-- <a href="#"> <i class="fa fa-plus"></i> </a>  -->
-
-									<a href="#"> <i><img alt="" src="images/like.png"></i>
-									</a>
-
+					<div class="col-md-3">
+						<div class="product-wrapper mb-45 text-center">
+							<div class="product-img">
+								<a> <img
+									src="data:image/jpeg;base64,${ images[display.index] }" alt=""
+									width="100%" height="410">
+								</a> <span><i class="fa fa-rupee"></i>55</span>
+								<div class="product-action">
+									<div class="product-action-style"> 
+									
+			            <form action="vote" method="post">
+		                	<input type="text" name="idUser" value="<c:out value='${CURRENT_USER.idUser}'/>"  />
+		                	<input type="text" name="idUser" value="<c:out value='${product.idProduct}'/>"/>   
+		                	<a> 
+		                		<i> 
+		                			<input type="image" src="images/like.png" alt="Like" >
+								</i>
+							</a>
+						</form>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+
 			</c:forEach>
 
 
 		</div>
-	</div>
+	</div> 
+	
 </body>
 </html>

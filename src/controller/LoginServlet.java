@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.DaoLogin;
 import dao.daoImpl.LoginDaoImpl;
@@ -42,20 +43,31 @@ public class LoginServlet extends HttpServlet {
 		try {
 			User us = user.login(emailUser, passwordUser);
 			if (us != null) {
-				
+
 				if (us.getRoleUser().equals("Client")) {
+					HttpSession session = request.getSession(true); // Creating a session
+					session.setAttribute("Client", emailUser); // setting session attribute
+					request.setAttribute("emailUser", emailUser); 
+                    session.setAttribute("CURRENT_USER", us);
 					
-					response.sendRedirect("vote");
+
+					response.sendRedirect("listClient");
 				}
-				
+
 				else {
 					if (us.getRoleUser().equals("Administrateur")) {
-						
-						response.sendRedirect("GestionProduct.jsp");
+
+						response.sendRedirect("Gestion");
+
+						System.out.println("Admin's Home");
+
+						HttpSession session = request.getSession(); // Creating a session
+						session.setAttribute("Administrateur", emailUser); // setting session attribute
+						request.setAttribute("emailUser", emailUser);
+
 					}
 				}
-			}
-			else {
+			} else {
 				System.out.print("Erreur null");
 				response.sendRedirect("login");
 			}

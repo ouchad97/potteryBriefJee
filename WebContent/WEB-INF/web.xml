@@ -20,19 +20,25 @@
         <servlet-class>Controller.InscritServlet</servlet-class>
     </servlet>
     
-    <servlet>
-        <servlet-name>vote</servlet-name>
-        <servlet-class>Controller.voteServlet</servlet-class>
-    </servlet>
+  
     
      <servlet>
         <servlet-name>Ajout</servlet-name>
         <servlet-class>Controller.AddProductServlet</servlet-class>
     </servlet>
     
+  
      <servlet>
-        <servlet-name>Gestion</servlet-name>
-        <servlet-class>Controller.gestionServlet</servlet-class>
+        <servlet-name>login</servlet-name>
+        <servlet-class>Controller.LoginServlet</servlet-class>
     </servlet>
+    
+    
+     <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>Controller.LogoutServlet</servlet-class>
+    </servlet> 
+	
+	
 </web-app>
 

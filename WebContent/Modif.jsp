@@ -12,13 +12,16 @@
 	<%
 		}
 	%>
-	
 <body>
-	<form class="form-signin" method="post" action="Ajout" var="product"
-		items="${AjoutProduct}" enctype='multipart/form-data'>
+
+
+	<form class="form-signin" method="post" action="update" 
+		enctype='multipart/form-data'>
+
+		<br /> <br />
 		<script language="JavaScript">
 			function showPreview(ele) {
-				$("#imgAvatar").attr("src", ele.value); 
+				$("#imgAvatar").attr("src", ele.value);
 				if (ele.files && ele.files[0]) {
 					var reader = new FileReader();
 					reader.onload = function(e) {
@@ -28,11 +31,9 @@
 				}
 			}
 		</script>
-		<div class="text-center mb-4">
 
-			<h1 class="h3 mb-3 font-weight-normal">SBahía</h1>
-		</div>
 		<br />
+
 		<div class="container">
 			<input type="file" name="image" accept="image/*"
 				OnChange="showPreview(this)" required>
@@ -40,29 +41,44 @@
 			<img id="imgAvatar" class="rounded mx-auto d-block"
 				style="width: 300px; height: 150px; margin-bottom: 30px;">
 		</div>
+
+		<c:if test="${product == null}">
+			<p>c'est null</p>
+		</c:if>
+		<c:if test="${product != null}">
+			<p>bieen  </p>
+		</c:if>
 		
 		
+		<div class="form-label-group">
+			<p>
+				ID Produit :
+				<c:out value='${product.idProduct}' />
+			</p>
+		</div>
+
 		<div class="form-label-group">
 			<input type="text" class="form-control" placeholder=""
 				name="titleProduct"
 				value="<c:out value='${product.titleProduct}' />" required autofocus>
-
 		</div>
-		<div class="form-label-group">
-			<input type="text" class="form-control" placeholder=""
-				name="priceProduct"
-				value="<c:out value='${product.priceProduct}' />" required>
 
-		</div>
 
 		<div class="form-label-group">
 			<input type="text" class="form-control" placeholder=""
-				name="Quantite" value="<c:out value='${product.Quantite}' />"
+				name="priceProduct" value="<c:out value='${product.priceProduct}'/>"
+				required>
+		</div>
+
+		<div class="form-label-group">
+			<input type="text" class="form-control" placeholder=""
+				name="Quantite" value="<c:out value='${product.quantite}' />"
 				required>
 		</div>
 
 		<button class="btn btn-lg btn-primary btn-block btnLogin btninscr"
-			type="submit">Ajouter</button>
+			type="submit">Modifier</button>
+
 		<button
 			class="btn btn-lg btn-primary btn-block btnLogin btninscr cancel"
 			type="submit"
